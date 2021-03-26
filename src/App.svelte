@@ -1,48 +1,32 @@
 <script>
-  import { onMount } from "svelte";
-  export let date;
+  import OrderList from './Order.svelte';
+  import Submit from './Submit.svelte';
 
-  onMount(async () => {
-    const res = await fetch("/api/date");
-    const newDate = await res.text();
-    date = newDate;
-  });
+	let sendToLocalBackend = true;
+  let url = "http://localhost:8084/"
+
+  function handleClick() {
+    if (sendToLocalBackend) {
+      url = "http://8.9.11.249:8084/";
+      sendToLocalBackend = false;
+    } else {
+      url = "http://localhost:8084/"
+      sendToLocalBackend = true;
+    }
+    console.log("URL: " + url)
+    console.log("Send to local backend: " + sendToLocalBackend)
+  }
 </script>
 
-<main>
-  <h1>Svelte + Node.js API</h1>
-  <h2>
-    Deployed with
-    <a href="https://vercel.com/docs" target="_blank" rel="noreferrer noopener">
-      Vercel
-    </a>
-    !
-  </h2>
-  <p>
-    <a
-      href="https://github.com/vercel/vercel/tree/master/examples/svelte"
-      target="_blank"
-      rel="noreferrer noopener">
-      This project
-    </a>
-    is a
-    <a href="https://svelte.dev/">Svelte</a>
-    app with three directories,
-    <code>/public</code>
-    for static assets,
-    <code>/src</code>
-    for components and content, and
-    <code>/api</code>
-    which contains a serverless
-    <a href="https://nodejs.org/en/">Node.js</a>
-    function. See
-    <a href="/api/date">
-      <code>api/date</code>
-      for the Date API with Node.js
-    </a>
-    .
-  </p>
-  <br />
-  <h2>The date according to Node.js is:</h2>
-  <p>{date ? date : 'Loading date...'}</p>
-</main>
+<button on:click={handleClick}>
+  Toggle Endpoints
+</button>
+<br>
+{#if sendToLocalBackend}
+  <h5>Sending to localhost:8084 for local development</h5>
+{:else}
+  <h5>Sending to Vultr instance</h5>
+{/if}
+<OrderList bookType="bids" {url}/>
+<OrderList bookType="asks" {url}/>
+<Submit {url}/>
