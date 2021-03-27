@@ -1,14 +1,18 @@
 <script>
+    import { user } from './stores.js';
+
     export let url;
 
     let orderToAdd = {
-      symbol:"nflx",
-      quantity:134,
-      price:456.32,
-      side:"buy",
+      userID:"",
+      symbol:"",
+      quantity:0.0,
+      price:0.0,
+      side:"",
     };
 
     const addOrder = async () => {
+      orderToAdd.userID = $user;
        const settings = {
          method: 'POST',
          body: JSON.stringify(orderToAdd),
@@ -45,9 +49,13 @@
         Side: <input type=text bind:value={orderToAdd.side}><br>
     </label>
     <br>
-    <button on:click={addOrder}>
+    {#if $user === ""}
+      <p>Cannot submit an order without logging in</p>
+    {:else}
+      <button on:click={addOrder}>
         Add Order
-    </button>
+      </button>
+    {/if}
 </div>
 
 <style>

@@ -1,6 +1,8 @@
 <script>
   import OrderList from './Order.svelte';
   import Submit from './Submit.svelte';
+  import UserLogin from './UserLogin.svelte';
+  import SymbolSelector from './SymbolSelector.svelte';
 
 	let sendToLocalBackend = true;
   let url = "http://localhost:8084/"
@@ -27,6 +29,20 @@
 {:else}
   <h5>Sending to Vultr instance</h5>
 {/if}
-<OrderList bookType="bids" {url}/>
-<OrderList bookType="asks" {url}/>
-<Submit {url}/>
+<div class="ordersPanel">
+<UserLogin {url}/>
+<SymbolSelector/>
+</div>
+<br>
+<div class="ordersPanel">
+  <Submit {url}/>
+  <div><OrderList bookType="bids" {url}/></div>
+  <div><OrderList bookType="asks" {url}/></div>
+</div>
+
+<style>
+  .ordersPanel {
+    display: flex;
+    flex-direction: row;
+  }
+</style>
