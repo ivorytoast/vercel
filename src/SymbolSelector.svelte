@@ -1,5 +1,5 @@
 <script>
-	import { symbol } from './stores.js';
+	import { symbol, debug } from './stores.js';
 
     let doNotFilter = true;
 
@@ -13,17 +13,22 @@
 
 <div class="container">
     {#if doNotFilter}
+        <br>
         <label>
             Do not filter: <input type=checkbox on:click={handleChange} bind:checked={doNotFilter}><br>
         </label>
         Please uncheck to choose a symbol to filter by
     {:else}
-        <label>
-            Choose Symbol: <input type=text bind:value={$symbol}> -> {$symbol}<br>
-        </label>
+        <br>
         <label>
             Do not filter: <input type=checkbox on:click={handleChange} bind:checked={doNotFilter}><br>
         </label>
+        <div class="mb-3 pt-0">
+            <input type="text" bind:value={$symbol} placeholder="Filter By This Symbol" class="mt-2 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"/>
+          </div>
+        {#if $debug === 'true'}
+            [{$symbol}]
+        {/if}
     {/if}
     <br>
 </div>

@@ -20,6 +20,16 @@
   }
 </script>
 
+<!-- <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
+  <div class="flex-shrink-0">
+    <img class="h-12 w-12" src="" alt="">
+  </div>
+  <div>
+    <div class="text-xl font-medium text-black">ChitChat</div>
+    <p class="text-gray-500">You have a new message!</p>
+  </div>
+</div>
+
 <button on:click={handleClick}>
   Toggle Endpoints
 </button>
@@ -29,20 +39,19 @@
 {:else}
   <h5>Sending to Vultr instance</h5>
 {/if}
-<div class="ordersPanel">
-<UserLogin {url}/>
-<SymbolSelector/>
-</div>
-<br>
-<div class="ordersPanel">
-  <Submit {url}/>
-  <div><OrderList bookType="bids" {url}/></div>
-  <div><OrderList bookType="asks" {url}/></div>
+-->
+<div class="grid grid-cols-1 md:grid-cols-5 gap-5 font-mono">
+  <div class="shadow-lg bg-white text-center p-5"><UserLogin {url}/></div>
+  <div class="shadow-lg bg-white text-center p-5"><SymbolSelector/></div>
+  <div class="shadow-lg bg-white text-center p-5"><Submit {url}/></div>
+  <div class="shadow-lg bg-white text-center p-5"><OrderList bookType="bids" {url}/></div>
+  <div class="shadow-lg bg-white text-center p-5"><OrderList bookType="asks" {url}/></div>
 </div>
 
-<style>
-  .ordersPanel {
-    display: flex;
-    flex-direction: row;
-  }
-</style>
+  <!-- <div class="flex flex-wrap space-x-4">
+    <div class="flex-1"><UserLogin {url}/></div>
+    <div class="flex-1"><SymbolSelector/></div>
+    <div class="flex-1"><Submit {url}/></div>
+    <div class="flex-1"><OrderList bookType="bids" {url}/></div>
+    <div class="flex-1"><OrderList bookType="asks" {url}/></div>
+  </div> -->

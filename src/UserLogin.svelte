@@ -1,5 +1,5 @@
 <script>
-	import { user, password } from './stores.js';
+	import { user, password, debug } from './stores.js';
 
     export let url;
 
@@ -68,25 +68,34 @@
      };
 </script>
 
-<div class="container">
-    <label>
-        User Name: <input type=text bind:value={inputUser}> {inputUser} -> {$user}<br>
-    </label>
-    <label>
-        Password: <input type=text bind:value={inputPassword}> {inputPassword} -> {$password}<br>
-    </label>
-    <br>
+<div>
+    <div class="mb-3 pt-0">
+      <input type="text" bind:value={inputUser} placeholder="User Name" class="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"/>
+    </div>
+    {#if $debug === 'true'}
+      {inputUser} -> {$user}
+      <br>
+    {/if}
+    <div class="mb-3 pt-0">
+      <input type="text" bind:value={inputPassword} placeholder="Password" class="mt-2 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"/>
+    </div>
+    {#if $debug === 'true'}
+      {inputPassword} -> {$password}
+      <br>
+    {/if}
     <label>
         {#if $user === ""}
-            <button on:click={login}>Login</button> You are currently not logged in...
+          <button on:click={login} class="bg-pink-500 hover:bg-pink-700 focus:bg-pink-700 focus:outline-none focus:ring focus:border-blue-500 mt-5 mb-5 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+            Login
+          </button>
+          <br>
+          You are currently not logged in...
         {:else}
-            <button on:click={login}>Login</button> You are logged in as user: {$user}
+          <button on:click={login} class="bg-pink-500 hover:bg-pink-700 focus:bg-pink-700 focus:outline-none focus:ring focus:border-blue-500 mt-5 mb-5 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+            Login
+          </button>
+          <br>
+          You are logged in as user: <br>[{$user}]
         {/if}
     </label>
 </div>
-
-<style>
-    .container {
-        border: 1px blue solid;
-    }
-</style>

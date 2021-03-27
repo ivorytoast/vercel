@@ -35,31 +35,25 @@
      };
 </script>
 
-<div class="container">
-    <label>
-        Symbol: <input type=text bind:value={orderToAdd.symbol}><br>
-    </label>
-    <label>
-        Quantity: <input type=number bind:value={orderToAdd.quantity}><br>
-    </label>
-    <label>
-        Price: <input type=number bind:value={orderToAdd.price}><br>
-    </label>
-    <label>
-        Side: <input type=text bind:value={orderToAdd.side}><br>
-    </label>
+<div>
+  <div class="mb-3 pt-0">
+    <input type="text" bind:value={orderToAdd.symbol} placeholder="Symbol" class="mt-2 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"/>
+  </div>
+  <div class="mb-3 pt-0">
+    <input type="number" bind:value={orderToAdd.quantity} placeholder="Quantity" class="mt-2 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"/>
+  </div>
+  <div class="mb-3 pt-0">
+    <input type="number" bind:value={orderToAdd.price} placeholder="Quantity" class="mt-2 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"/>
+  </div>
+  <div class="mb-3 pt-0">
+    <input type="text" bind:value={orderToAdd.side} placeholder="Side" class="mt-2 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"/>
+  </div>
     <br>
     {#if $user === ""}
       <p>Cannot submit an order without logging in</p>
     {:else}
-      <button on:click={addOrder}>
-        Add Order
-      </button>
+    <button on:click={addOrder} class="bg-pink-500 hover:bg-pink-700 focus:bg-pink-700 focus:outline-none focus:ring focus:border-blue-500 mt-5 mb-5 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+      Add Order
+    </button>
     {/if}
 </div>
-
-<style>
-    .container {
-        border: 1px blue solid;
-    }
-</style>

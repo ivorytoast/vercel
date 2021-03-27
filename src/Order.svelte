@@ -27,16 +27,14 @@
     }
 </script>
 
-  <div class="container">
-    <button on:click={handleClick}>
-        Get Orders
+  <div>
+    <button on:click={handleClick} class="bg-pink-500 mt-5 mb-5 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+        {#if bookType === "bids"}
+            Get Bids
+        {:else}
+            Get Asks
+        {/if}
     </button>
-    
-    {#if bookType === "bids"}
-        <h3>Bids</h3>
-    {:else}
-        <h3>Asks</h3>
-    {/if}
   
     {#await promisedOrders}
         <p>...retrieving orders</p>
@@ -47,14 +45,14 @@
         {#if order.side === sideToMatch}
             {#if $symbol === ""}
                 {#if order.quantityRemaining === 0}
-                    <li class="completedOrder">{order.id} -> {order.symbol} {order.side}s {order.quantity}/{order.quantityRemaining} shares @ {order.price}</li>
+                    <li class="text-gray-300">{order.id} -> {order.symbol} {order.side}s {order.quantity}/{order.quantityRemaining} shares @ {order.price}</li>
                 {:else}
                     <li>{order.id} -> {order.symbol} {order.side}s {order.quantity}/{order.quantityRemaining} shares @ {order.price}</li>
                 {/if}
             {:else}
                 {#if $symbol === order.symbol}
                     {#if order.quantityRemaining === 0}
-                        <li class="completedOrder">{order.id} -> {order.symbol} {order.side}s {order.quantity}/{order.quantityRemaining} shares @ {order.price}</li>
+                        <li class="text-gray-300">{order.id} -> {order.symbol} {order.side}s {order.quantity}/{order.quantityRemaining} shares @ {order.price}</li>
                     {:else}
                         <li>{order.id} -> {order.symbol} {order.side}s {order.quantity}/{order.quantityRemaining} shares @ {order.price}</li>
                     {/if}
@@ -68,13 +66,3 @@
         <p style="color: red">{error.message}</p>
     {/await}
   </div>
-
-  <style>
-      .container {
-          border: 1px pink solid;
-      }
-
-      .completedOrder {
-          color: lightgray;
-      }
-  </style>
