@@ -1,13 +1,12 @@
 <script>
-    import { symbol, user } from './stores.js';
+    import { symbol, user, url } from './stores.js';
 
     export let bookType = "";
-    export let url;
 
     let sideToMatch = (bookType === "bids") ? "buy" : "sell";
 
     async function getAllOrders() {
-          const res = await fetch(url + "order/all");
+          const res = await fetch($url + "order/all");
           const text = await res.json();
   
           if (res.ok) {
@@ -28,7 +27,7 @@
 </script>
 
   <div>
-    <button on:click={handleClick} class="bg-pink-500 mt-5 mb-5 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+    <button on:click={handleClick} class="bg-green-400 mt-5 mb-5 text-white active:bg-green-700 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
         {#if bookType === "bids"}
             Get Bids
         {:else}
@@ -39,7 +38,7 @@
     {#await promisedOrders}
         <p>...retrieving orders</p>
     {:then listOfOrders}
-    <ul>
+    <ul class="text-left">
       {#each listOfOrders as order }
       {#if order.userID === $user}
         {#if order.side === sideToMatch}

@@ -1,7 +1,5 @@
 <script>
-    import { user } from './stores.js';
-
-    export let url;
+    import { user, url } from './stores.js';
 
     let orderToAdd = {
       userID:"",
@@ -22,7 +20,7 @@
          }
        }
        console.log(settings.body)
-       const response = await fetch(url + "loki/v1/request/submit", settings);
+       const response = await fetch($url + "loki/v1/request/submit", settings);
        if (!response.ok) {
            console.log("Error was: " + response.message)
        }
@@ -52,7 +50,7 @@
     {#if $user === ""}
       <p>Cannot submit an order without logging in</p>
     {:else}
-    <button on:click={addOrder} class="bg-pink-500 hover:bg-pink-700 focus:bg-pink-700 focus:outline-none focus:ring focus:border-blue-500 mt-5 mb-5 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+    <button on:click={addOrder} class="bg-green-400 hover:bg-green-700 focus:bg-green-700 focus:outline-none focus:ring focus:border-blue-500 mt-5 mb-5 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
       Add Order
     </button>
     {/if}
