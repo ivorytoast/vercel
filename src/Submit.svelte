@@ -41,7 +41,7 @@
     <input type="number" bind:value={orderToAdd.quantity} placeholder="Quantity" class="mt-2 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"/>
   </div>
   <div class="mb-3 pt-0">
-    <input type="number" bind:value={orderToAdd.price} placeholder="Quantity" class="mt-2 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"/>
+    <input type="number" bind:value={orderToAdd.price} placeholder="Price" class="mt-2 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"/>
   </div>
   <div class="mb-3 pt-0">
     <input type="text" bind:value={orderToAdd.side} placeholder="Side" class="mt-2 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"/>
