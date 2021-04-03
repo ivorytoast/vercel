@@ -5,12 +5,12 @@
 
   function handleClick() {
     if (sendToLocalBackend) {
-      $lokiUrl = "https://149.28.42.55:8084/";
-      $thorUrl = "https://149.28.42.55:8085/";
+      $lokiUrl = "http://149.28.42.55:8084/";
+      $thorUrl = "http://149.28.42.55:8085/";
       sendToLocalBackend = false;
     } else {
-      $lokiUrl = "https://localhost:8084/"
-      $thorUrl = "https://localhost:8085/";
+      $lokiUrl = "http://localhost:8084/"
+      $thorUrl = "http://localhost:8085/";
       sendToLocalBackend = true;
     }
     console.log("Loki URL: " + $lokiUrl)
