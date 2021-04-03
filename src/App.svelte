@@ -26,6 +26,12 @@
 <!-- <Tabs class="container mx-auto"/> -->
 {#if $currentTab === "home"}
   <UserLogin/>
+  <br>
+  <div class="shadow-lg bg-red-50 text-center p-5"><p class="text-3xl font-extrabold">First time at this site? Then please do the following:</p><br>
+    Please go visit the website's cloud provider's (Vultr) host:port address:<br><br><a class="font-extrabold" href="https://149.28.42.55/8084/">https://149.28.42.55/8084/</a><br><br>Your web browser will say this is an "Unsecure Site since it has a self signing certificate".
+    This is because I do not want to pay for an actual certificate :) <br><br>
+    All you have to do is then click on:<br><br><ol><li>1. <span class="font-extrabold">"Show Details"</span></li><li>2. <span class="font-extrabold">"Visit this website"</span></li></ol><br>
+    Once this happens, your browser will not block requests due to it thinking it is unsecure!</div>
 {:else if $currentTab === "orders"}
   {#if $user === ""}
     <h1>Please log in first to see your orders :)</h1>
