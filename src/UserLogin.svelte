@@ -22,7 +22,8 @@
          headers: {
            'Accept': 'application/json',
            'Content-Type': 'application/json',
-         }
+         },
+         agent: httpsAgent,
        }
        console.log("The JSON payload being sent to Loki: " + settings.body)
        const response = await fetch($lokiUrl + 'vision/v1/users/validate/login', settings);
