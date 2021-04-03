@@ -1,23 +1,27 @@
 <script>
-  import { user, url, debug, currentTab } from './stores.js';
+  import { user, lokiUrl, thorUrl, debug, currentTab } from './stores.js';
 
   let sendToLocalBackend = true;
 
   function handleClick() {
     if (sendToLocalBackend) {
-      $url = "http://8.9.11.249:8084/";
+      $lokiUrl = "http://149.28.42.55:8084/";
+      $thorUrl = "http://149.28.42.55:8085/";
       sendToLocalBackend = false;
     } else {
-      $url = "http://localhost:8084/"
+      $lokiUrl = "http://localhost:8084/"
+      $thorUrl = "http://localhost:8085/";
       sendToLocalBackend = true;
     }
-    console.log("URL: " + $url)
+    console.log("Loki URL: " + $lokiUrl)
+    console.log("Thor URL: " + $thorUrl)
     console.log("Send to local backend: " + sendToLocalBackend)
   }
 
   function changeTab(newTab) {
     console.log("Changing to tab: " + newTab)
     $currentTab = newTab;
+    console.log("Current tab is: " + $currentTab)
   }
 </script>
 
@@ -63,8 +67,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="px-3 py-2 flex cursor-pointer items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" on:click={() => changeTab("settings")}>
-              Settings
+            <a class="px-3 py-2 flex cursor-pointer items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" on:click={() => changeTab("integration")}>
+              Integration
             </a>
           </li>
       </ul>

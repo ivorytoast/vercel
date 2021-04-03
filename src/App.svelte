@@ -4,8 +4,12 @@
   import UserLogin from './UserLogin.svelte';
   import SymbolSelector from './SymbolSelector.svelte';
   import Navbar from './Navbar.svelte';
+  import Users from './Users.svelte';
+  import Health from './Health.svelte';
+  import CreateNewUser from './CreateUser.svelte';
+  import Integration from './Integration.svelte';
 
-  import { url, debug, currentTab, user } from './stores.js';
+  import { debug, currentTab, user } from './stores.js';
 
 	let sendToLocalBackend = true;
 
@@ -20,7 +24,6 @@
   </div>
 </div> -->
 <!-- <Tabs class="container mx-auto"/> -->
-
 {#if $currentTab === "home"}
   <UserLogin/>
 {:else if $currentTab === "orders"}
@@ -35,9 +38,14 @@
     </div>
   {/if}
 {:else if $currentTab === "dashboard"}
-  ...dashboard
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-5 font-mono">
+    <div class="shadow-lg bg-blue-50 text-center p-5"><Users/></div>
+    <div class="shadow-lg bg-blue-50 text-center p-5"><Health/></div>
+  </div>
+{:else if $currentTab === "integration"}
+  <Integration/>
 {:else if $currentTab === "settings"}
-  ...settings
+  <CreateNewUser/>
 {:else}
 	<h1>How did you get here? This is not a valid tab on this website :(</h1>
 {/if}

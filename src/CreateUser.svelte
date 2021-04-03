@@ -1,16 +1,16 @@
 <script>
-	import { user, currentTab, password, debug, lokiUrl } from './stores.js';
+	import { user, password, debug, currentTab, lokiUrl } from './stores.js';
 
     let inputUser ="";
     let inputPassword ="";
 
     let loginInfo = {
-        username:"ivorytoast",
-        password:"password"
+        username:"",
+        password:""
     }
 
-    function createNewAccount() {
-      $currentTab = "settings";
+    function goBackToSignIn() {
+      $currentTab = "home";
     }
 
     const login = async () => {
@@ -24,19 +24,19 @@
            'Content-Type': 'application/json',
          }
        }
-       console.log("The JSON payload being sent to Loki: " + settings.body)
-       const response = await fetch($lokiUrl + 'vision/v1/users/validate/login', settings);
-       if (!response.ok) throw Error(response.message);
+       console.log("JSON sending to create new user: " + settings.body)
+       const response = await fetch($lokiUrl + 'vision/v1/users/create', settings);
+       console.log(response)
+       if (!response.ok) {
+           console.error("Response is not okay!")
+       }
        try {
-          let outputData = await response.json();
-          console.log("The JSON Loki sent back to us: " + JSON.stringify(outputData));
-          if (outputData.validUser) {
-            $user = inputUser;
-            $password = inputPassword;
-            console.log("Currently changed to user: " + inputUser);
+          let outputData = await response.text();
+          if (outputData) {
+            console.log("Creating user: " + inputUser + " was a success!");
+            alert("User " + inputUser + " was created!");
           } else {
-            alert("Login Failed. Please make sure username/password is correct.")
-            console.log("Was not a valid user: " + outputData);
+            console.error("Creating user: " + inputUser + " failed!");
           }
        } catch (err) {
          throw err;
@@ -73,28 +73,14 @@
                 {inputPassword} -> {$password}
                 <br>
               {/if}
-              <label>
-                  {#if $user === ""}
-                    <button on:click={login} class="bg-green-400 hover:bg-green-700 focus:bg-green-700 focus:outline-none focus:ring focus:border-blue-500 mt-5 mb-5 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-                      Login
-                    </button>
-                    <br>
-                    You are currently not logged in...
-                  {:else}
-                    <button on:click={login} class="bg-green-400 hover:bg-green-700 focus:bg-green-700 focus:outline-none focus:ring focus:border-blue-500 mt-5 mb-5 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-                      Login
-                    </button>
-                    <br>
-                    You are logged in as user: <br>[{$user}]
-                  {/if}
-              </label>
+            <button on:click={login} class="bg-green-400 hover:bg-green-700 focus:bg-green-700 focus:outline-none focus:ring focus:border-blue-500 mt-5 mb-5 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                Create New User
+            </button>
           </div>
           </div>
         </div>
-        <div class="flex flex-wrap mt-6 text-center">
-          <div class="">
-            <a on:click={createNewAccount} class="cursor-pointer text-gray-400"><small>Create new account</small></a>
-          </div>
+        <div class="flex flex-wrap mt-6">
+            <a on:click={goBackToSignIn} class="cursor-pointer text-gray-400"><small>Sign In</small></a>
         </div>
       </div>
     </div>

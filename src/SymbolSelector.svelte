@@ -1,5 +1,5 @@
 <script>
-	import { symbol, debug, url } from './stores.js';
+	import { symbol, debug } from './stores.js';
 
     let doNotFilter = true;
 

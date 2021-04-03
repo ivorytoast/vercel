@@ -1,12 +1,12 @@
 <script>
-    import { symbol, user, url } from './stores.js';
+    import { symbol, user, thorUrl } from './stores.js';
 
     export let bookType = "";
 
     let sideToMatch = (bookType === "bids") ? "buy" : "sell";
 
     async function getAllOrders() {
-          const res = await fetch($url + "order/all");
+          const res = await fetch($thorUrl + "maw/v1/orders/all");
           const text = await res.json();
   
           if (res.ok) {

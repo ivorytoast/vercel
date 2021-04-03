@@ -1,5 +1,5 @@
 <script>
-    import { user, url } from './stores.js';
+    import { user, lokiUrl } from './stores.js';
 
     let orderToAdd = {
       userID:"",
@@ -20,7 +20,7 @@
          }
        }
        console.log(settings.body)
-       const response = await fetch($url + "loki/v1/request/submit", settings);
+       const response = await fetch($lokiUrl + "loki/v1/request/submit", settings);
        if (!response.ok) {
            console.log("Error was: " + response.message)
        }
