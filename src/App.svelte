@@ -46,7 +46,16 @@
 {:else if $currentTab === "dashboard"}
   <div class="grid grid-cols-1 md:grid-cols-4 gap-5 font-mono">
     <div class="shadow-lg bg-blue-50 text-center p-5"><Users/></div>
-    <div class="shadow-lg bg-blue-50 text-center p-5"><Health/></div>
+    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="loki" port="8081"/></div>
+    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="loki" port="8083"/></div>
+    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="loki" port="8084"/></div>
+    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="vision" port="8081"/></div>
+    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="vision" port="8083"/></div>
+    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="vision" port="8084"/></div>
+    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="maw" port="8087"/></div>
+    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="maw" port="8088"/></div>
+    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="maw" port="8089"/></div>
+    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="bad" port="8085"/></div>
   </div>
 {:else if $currentTab === "integration"}
   <Integration/>

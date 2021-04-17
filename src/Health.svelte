@@ -1,9 +1,12 @@
 <script>
-    import { lokiUrl } from './stores.js';
+    import { onMount } from 'svelte';
+
+    export let port = "";
+    export let service = "";
 
     async function getHealthData() {
-          const res = await fetch($lokiUrl + "actuator/health");
-          const text = await res.json();
+          const res = await fetch("https://localhost:"+port+"/"+service+"/status");
+          const text = await res.text();
   
           if (res.ok) {
               return text;
@@ -11,6 +14,10 @@
               throw new Error(text);
         }
     }
+
+    onMount(async () => {
+		promisedHealthData = getHealthData();
+	});
   
     let promisedHealthData = []
   
@@ -21,16 +28,19 @@
 </script>
 
   <div>
-    <button on:click={handleClick} class="bg-green-400 mt-5 mb-5 text-white active:bg-green-700 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-        Get Health Data
-    </button>
+    <h2>{port}'s {service}</h2>
 
     {#await promisedHealthData}
         <p>...retrieving health data</p>
     {:then healthData}
     <br>
-        Not implemented yet...
+        {healthData}
     {:catch error}
         <p style="color: red">{error.message}</p>
     {/await}
+
+    <br>
+    <button on:click={handleClick} class="bg-green-400 mt-5 mb-5 text-white active:bg-green-700 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+        Refresh Endpoint Status
+    </button>
   </div>
