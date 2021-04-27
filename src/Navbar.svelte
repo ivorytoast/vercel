@@ -57,18 +57,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="px-3 pr-3 py-2 cursor-pointer flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" on:click={() => changeTab("orders")}>
-              Orders
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="px-3 py-2 flex cursor-pointer items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" on:click={() => changeTab("dashboard")}>
-              Dashboard
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="px-3 py-2 flex cursor-pointer items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" on:click={() => changeTab("integration")}>
-              Integration
+            <a class="px-3 pr-3 py-2 cursor-pointer flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" on:click={() => changeTab("settings")}>
+              Create New User
             </a>
           </li>
       </ul>

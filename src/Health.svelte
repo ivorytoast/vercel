@@ -5,7 +5,7 @@
     export let service = "";
 
     async function getHealthData() {
-          const res = await fetch("https://localhost:"+port+"/"+service+"/status");
+          const res = await fetch("http://localhost:"+port+"/"+service+"/status");
           const text = await res.text();
   
           if (res.ok) {
@@ -33,13 +33,10 @@
     {#await promisedHealthData}
         <p>...retrieving health data</p>
     {:then healthData}
-    <br>
-        {healthData}
+        <p class="text-lg mt-3">{healthData}</p>
     {:catch error}
         <p style="color: red">{error.message}</p>
     {/await}
-
-    <br>
     <button on:click={handleClick} class="bg-green-400 mt-5 mb-5 text-white active:bg-green-700 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
         Refresh Endpoint Status
     </button>

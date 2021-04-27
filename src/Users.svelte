@@ -28,9 +28,9 @@
     {#await promisedUsers}
         <p>...retrieving users</p>
     {:then listOfUsers}
-    <ul class="text-center">
-      {#each listOfUsers as user}
-        <li>{user.userID} -> {user.password}</li>
+    <ul class="text-left">
+      {#each listOfUsers as user, i}
+        <li>{i + 1}.) {user.userID} -> {user.password}</li>
       {/each}
     </ul>
     {:catch error}

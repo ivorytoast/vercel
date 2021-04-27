@@ -19,46 +19,26 @@
 </script>
 
 <Navbar/>
-<!-- <div class="flex">
-  <div class="m-auto">
+ {#if $currentTab === "home"}
+  <div class="grid grid-cols-1 md:grid-cols-5 gap-5 font-mono">
+    <div class="md:col-start-2 md:row-start-2 h-60 shadow-lg bg-blue-50 text-center p-5"><SymbolSelector/></div>
+    <div class="md:col-start-2 md:row-start-1 h-60 shadow-lg bg-blue-50 text-center p-5"><UserLogin/></div>
+    <div class="md:col-start-3 md:row-start-1 md:row-end-3 min-h-500 shadow-lg bg-blue-50 text-center p-5"><Submit/></div>
+    <div class="md:col-start-1 md:row-start-1 md:row-end-3 overflow-y-auto shadow-lg bg-blue-50 text-center p-5" style="height: 510px"><OrderList bookType="bids"/></div>
+    <div class="md:col-start-5 md:row-start-1 md:row-end-3 overflow-y-auto shadow-lg bg-blue-50 text-center p-5" style="height: 510px"><OrderList bookType="asks"/></div>
+    <div class="md:col-start-4 md:row-start-1 md:row-end-2 overflow-y-auto shadow-lg bg-blue-50 text-center p-5" style="height: 240px"><Users/></div>
+    <div class="md:col-start-4 md:row-start-2 md:row-end-3 overflow-y-auto shadow-lg bg-blue-50 text-center p-5" style="height: 240px"><Integration/></div>
+    <div class="md:row-start-3 h-40 shadow-lg bg-blue-50 text-center p-5"><Health service="loki" port="8081"/></div>
+    <div class="md:row-start-3 h-40 shadow-lg bg-blue-50 text-center p-5"><Health service="loki" port="8083"/></div>
+    <div class="md:row-start-3 h-40 shadow-lg bg-blue-50 text-center p-5"><Health service="loki" port="8084"/></div>
+    <div class="md:row-start-3 h-40 shadow-lg bg-blue-50 text-center p-5"><Health service="vision" port="8081"/></div>
+    <div class="md:row-start-3 h-40 shadow-lg bg-blue-50 text-center p-5"><Health service="vision" port="8083"/></div>
+    <div class="md:row-start-4 h-40 shadow-lg bg-blue-50 text-center p-5"><Health service="vision" port="8084"/></div>
+    <div class="md:row-start-4 h-40 shadow-lg bg-blue-50 text-center p-5"><Health service="maw" port="8087"/></div>
+    <div class="md:row-start-4 h-40 shadow-lg bg-blue-50 text-center p-5"><Health service="maw" port="8088"/></div>
+    <div class="md:row-start-4 h-40 shadow-lg bg-blue-50 text-center p-5"><Health service="maw" port="8089"/></div>
+    <div class="md:row-start-4 h-40 shadow-lg bg-blue-50 text-center p-5"><Health service="FAKE SERVICE" port="8085"/></div>
   </div>
-</div> -->
-<!-- <Tabs class="container mx-auto"/> -->
-{#if $currentTab === "home"}
-  <UserLogin/>
-  <br>
-  <div class="shadow-lg bg-red-50 text-center p-5"><p class="text-3xl font-extrabold">First time at this site? Then please do the following:</p><br>
-    Manually run a sample request by using the following link:<br><br><a href="https://149.28.42.55:8084/vision/v1/users/all" class="font-extrabold">Get List Of All Users</a><br><br>Your web browser will say this is an "Unsecure Site since it has a self signing certificate".
-    This is because I do not want to pay for an actual certificate :) <br><br>
-    Once you hit the endpoint, the next steps are:<br><br><ol><li>1. <span class="font-extrabold">"Show Details"</span></li><li>2. <span class="font-extrabold">"Visit this website"</span></li></ol><br>
-    Once this happens, your browser will not block requests due to it thinking it is unsecure!</div>
-{:else if $currentTab === "orders"}
-  {#if $user === ""}
-    <h1>Please log in first to see your orders :)</h1>
-  {:else}
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-5 font-mono">
-      <div class="shadow-lg bg-blue-50 text-center p-5"><SymbolSelector/></div>
-      <div class="shadow-lg bg-blue-50 text-center p-5"><Submit/></div>
-      <div class="shadow-lg bg-blue-50 text-center p-5"><OrderList bookType="bids"/></div>
-      <div class="shadow-lg bg-blue-50 text-center p-5"><OrderList bookType="asks"/></div>
-    </div>
-  {/if}
-{:else if $currentTab === "dashboard"}
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-5 font-mono">
-    <div class="shadow-lg bg-blue-50 text-center p-5"><Users/></div>
-    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="loki" port="8081"/></div>
-    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="loki" port="8083"/></div>
-    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="loki" port="8084"/></div>
-    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="vision" port="8081"/></div>
-    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="vision" port="8083"/></div>
-    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="vision" port="8084"/></div>
-    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="maw" port="8087"/></div>
-    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="maw" port="8088"/></div>
-    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="maw" port="8089"/></div>
-    <div class="shadow-lg bg-blue-50 text-center p-5"><Health service="bad" port="8085"/></div>
-  </div>
-{:else if $currentTab === "integration"}
-  <Integration/>
 {:else if $currentTab === "settings"}
   <CreateNewUser/>
 {:else}
