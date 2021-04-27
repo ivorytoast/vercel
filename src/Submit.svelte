@@ -34,6 +34,8 @@
 </script>
 
 <div>
+  <p class="text-xl mt-3">Submit Order</p>
+  <br>
   <div class="mb-3 pt-0">
     <input type="text" bind:value={orderToAdd.symbol} placeholder="Symbol" class="mt-2 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"/>
   </div>
@@ -46,6 +48,7 @@
   <div class="mb-3 pt-0">
     <input type="text" bind:value={orderToAdd.side} placeholder="Side" class="mt-2 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"/>
   </div>
+  <br>
     {#if $user === ""}
       <p>Cannot submit an order without logging in</p>
     {:else}
